@@ -7,3 +7,4 @@ When you no longer know what to do, let the Magic Eight Ball decide for you.
 
 ## Installation
 
+## Installation

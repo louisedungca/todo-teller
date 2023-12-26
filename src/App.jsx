@@ -7,7 +7,7 @@ export default function App() {
         Ask the Eight Ball
       </h1>
       <small>
-        When you no longer know what to do, let the Magic Eight Ball decide for you!
+        When you no longer know what to do, let this magic ball decide for you!
       </small>
       <c.Ball />
     </main>    

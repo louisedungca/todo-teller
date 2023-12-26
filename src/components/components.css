@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+  .ball__outer {
+    @apply cursor-pointer flex items-center justify-center relative;
+    background: #111;
+    width: [min(9.375rem, calc(8.6754rem + 11.194vw)), 18.75rem];
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: 3rem 0;
+    box-shadow:
+      10px 10px 30px rgb(13, 15, 12),
+      -10px -10px 30px rgb(74, 74, 74);
+  }
+}

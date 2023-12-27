@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 as randomuuid } from 'uuid'; 
+import { setLocalStorage } from '../../../utils';
 
 function TodoForm() {
   const { register, handleSubmit, reset } = useForm();
@@ -16,10 +17,12 @@ function TodoForm() {
         isEditing: false,
       },
     ]);
-  }
-
-  // for checking only -- delete later
+  };
+  
   useEffect(() => {
+    setLocalStorage('todolist', todos);
+
+    // for checking only -- delete later
     console.log('to do:', todos);
   }, [todos]); 
 

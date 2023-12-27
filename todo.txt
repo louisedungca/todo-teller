@@ -1,0 +1,22 @@
+TO DO TELLER | Mini Project
+
+features:
+1. Ball
+-- shake animation
+-- pick to do from to do list
+-- delete to do once done
+
+2. To do list
+-- add to do
+-- edit to do
+-- delete to do
+-- save on local storage
+
+3. Toast
+-- successful action: add/edit/delete
+-- error: unable to add/edit/delete
+
+
+consider:
+1. form library
+2. uuid: crypto.randomUUID()

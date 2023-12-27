@@ -8,7 +8,7 @@ function Ball() {
       </div>
       <div className='absolute top-0 bg-[#333] opacity-20 w-[250px] aspect-square rounded-full'></div>
       <div className='absolute top-0 bg-[#666] opacity-20 w-[175px] aspect-square rounded-full'></div>
-      <div className='absolute top-[5px] bg-[#aaa] opacity-35 w-[65px] aspect-[1.05] rounded-full'></div>
+      <div className='absolute top-[5px] bg-[#aaa] opacity-35 w-[65px] aspect-[1/0.85] rounded-full'></div>
       <div className='absolute bottom-0 bg-[#333] opacity-25 w-[150px] aspect-[0.95] rounded-full'></div>
     </div>
   )

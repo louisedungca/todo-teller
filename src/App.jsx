@@ -1,4 +1,4 @@
-import * as c from './components';
+import * as feat from './features';
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
       <small>
         When you no longer know what to do, let this magic ball decide for you!
       </small>
-      <c.Ball />
+      <feat.Ball />
     </main>    
   )
 }

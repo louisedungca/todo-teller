@@ -12,7 +12,7 @@ ok -- add to do
 -- delete to do
 -- save on local storage
 
--- error message for validation (input field)
+-- local storage resets every reload
 
 3. Toast
 -- successful action: add/edit/delete

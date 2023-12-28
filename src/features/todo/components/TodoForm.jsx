@@ -1,40 +1,21 @@
-import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { v4 as randomuuid } from 'uuid'; 
-import { setLocalStorage } from '../../../utils';
 
-function TodoForm() {
+function TodoForm({ todos, addTodo }) {
   const { register, handleSubmit, reset } = useForm();
-  const [todos, setTodos] = useState([]);
-
-  function addTodo(todo) {
-    setTodos(prevTodos => [
-      ...prevTodos,
-      {
-        id: randomuuid(),
-        task: todo,
-        isCompleted: false,
-        isEditing: false,
-      },
-    ]);
-  };
-  
-  useEffect(() => {
-    setLocalStorage('todolist', todos);
-
-    // for checking only -- delete later
-    console.log('to do:', todos);
-  }, [todos]); 
 
   function onSubmit(formData) {
     const { todoItem } = formData;
     addTodo(todoItem);
-
-    // reset form
     reset();
+    
     // for checking only -- delete later
     console.log('todoItem:', todoItem);
+    console.log('@TodoForm - todos:', todos);
   }
+
+  // for checking only -- delete later
+  // console.log('@TodoForm - todos:', todos);
+  // console.log('@TodoForm - addTodo:', addTodo);
 
   return (
     <form 

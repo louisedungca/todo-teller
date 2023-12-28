@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { v4 as randomuuid } from 'uuid'; 
 import { ArchiveBoxArrowDownIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
-import { setLocalStorage } from '../../utils';
+import { getLocalStorage, setLocalStorage } from '../../utils';
 import * as c from './components';
 
 function TodoWrapper() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(getLocalStorage('todolist') || []);
 
   function addTodo(todo) {
     setTodos(prevTodos => [
@@ -39,9 +39,9 @@ function TodoWrapper() {
       <div className='w-[100%] flex flex-col gap-2 mt-3 px-2'>
         {
           todos.length > 0 &&          
-          todos.map(todo => (
+          todos.map((todo, index) => (
             <div 
-              key={todo.uuid}
+              key={index}
               className='flex justify-between bg-white text-black p-1 rounded-md'
             >
               <span className='w-[85%] px-1'>{todo.task}</span> 

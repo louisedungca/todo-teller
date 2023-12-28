@@ -12,8 +12,6 @@ ok -- add to do
 -- delete to do
 -- save on local storage
 
--- local storage resets every reload
-
 3. Toast
 -- successful action: add/edit/delete
 -- error: unable to add/edit/delete

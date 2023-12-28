@@ -1,6 +1,6 @@
+import { ArchiveBoxArrowDownIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
 import { v4 as randomuuid } from 'uuid'; 
-import { ArchiveBoxArrowDownIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 import { deleteItem, getLocalStorage, setLocalStorage } from '../../utils';
 import * as c from './components';
 
@@ -22,16 +22,16 @@ function TodoWrapper() {
   function deleteTodo(id) {
     setTodos(prevTodos => {
       const newTodos = prevTodos.filter(todo => todo.id !== id);
-      deleteItem({ key: 'todolist', id });
+      deleteItem({ 
+        key: 'todolist', 
+        id 
+      });
       return newTodos;
     });
   }
   
   useEffect(() => {
     setLocalStorage('todolist', todos);
-
-    // for checking only -- delete later
-    console.log('to do:', todos);
   }, [todos]); 
 
   return (

@@ -7,9 +7,12 @@ features:
 -- delete to do once done
 
 2. To do list
+-- completed tasks save on local
+
+ok -- edit to do
 ok -- add to do
--- edit to do
 ok -- delete to do
+ok -- completed task display
 ok -- save on local storage
 
 3. Toast
@@ -20,3 +23,4 @@ ok -- save on local storage
 consider:
 1. form library
 2. uuid: crypto.randomUUID()
+4. responsiveness

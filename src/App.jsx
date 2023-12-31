@@ -12,7 +12,7 @@ export default function App() {
         </small>
         <feat.Ball />
       </section>    
-      <aside className='w-[30%] p-2'>
+      <aside>
         <feat.TodoWrapper />
       </aside>        
     </main>    

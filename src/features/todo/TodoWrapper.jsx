@@ -47,15 +47,6 @@ function TodoWrapper() {
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       );
       setLocalStorage('todolist', newTodos);
-
-      const completedTask = newTodos.find((todo) => todo.id === id);
-      if (completedTask && completedTask.isCompleted) {
-        setCompletedTasks((prevCompletedTasks) => [
-          ...prevCompletedTasks,
-          completedTask,
-        ]);
-      }
-
       return newTodos;
     });
   }
@@ -79,7 +70,18 @@ function TodoWrapper() {
 
   useEffect(() => {
     setLocalStorage('todolist', todos);
+
+    const completedTasks = todos.filter((task) => task.isCompleted);
+    setCompletedTasks(completedTasks);
+    
+    setLocalStorage('completedTasks', completedTasks);
   }, [todos]);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [editTaskId]);
 
   return (
     <div className='flex flex-col gap-3'>
@@ -97,7 +99,6 @@ function TodoWrapper() {
       <div className='w-[100%] flex flex-col gap-2 mt-3 px-2'>
         {todos.length > 0 &&          
           todos.map((todo) => (
-            // Render only if the task is not completed
             !todo.isCompleted && (
               <div 
                 key={todo.id}
@@ -108,7 +109,7 @@ function TodoWrapper() {
                     ref={inputRef}
                     value={todo.task}
                     onChange={(e) => setTodos((prevTodos) =>
-                      prevTodos.map((t) => (t.id === todo.id ? { ...t, task: e.target.value } : t))
+                      prevTodos.map((task) => (task.id === todo.id ? { ...task, task: e.target.value } : task))
                     )}
                     onBlur={handleBlur}
                     className='w-[80%] px-1'

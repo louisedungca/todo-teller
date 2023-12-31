@@ -1,13 +1,13 @@
-import React from 'react';
-
 function CompletedTasks({ completedTasks }) {
   console.log('Completed Tasks:', completedTasks);
 
   return (
     <div className='flex flex-col'>
-      <h3 className='uppercase text-center pt-3'>
-        Completed Tasks
-      </h3>
+      {completedTasks.length > 0 &&
+        <h3 className='uppercase text-center pt-3'>
+          Completed Tasks
+        </h3>
+      }
 
       <div className='w-[100%] flex flex-col gap-2 mt-3 px-2'>
         {completedTasks.length > 0 &&

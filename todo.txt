@@ -7,7 +7,8 @@ features:
 -- delete to do once done
 
 2. To do list
--- completed tasks save on local
+-- delete completed task
+-- clear all completed tasks
 
 ok -- edit to do
 ok -- add to do

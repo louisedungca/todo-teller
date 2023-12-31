@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Ball() {
   return (
     <div className='cursor-pointer relative flex justify-center items-center bg-[#111] w-[300px] aspect-square rounded-full shadow-ball__outer m-[3rem]'>

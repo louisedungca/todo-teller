@@ -9,8 +9,8 @@ features:
 2. To do list
 ok -- add to do
 -- edit to do
--- delete to do
--- save on local storage
+ok -- delete to do
+ok -- save on local storage
 
 3. Toast
 -- successful action: add/edit/delete

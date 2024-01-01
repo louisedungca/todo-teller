@@ -14,8 +14,8 @@ export const deleteItem = ({ key, id }) => {
 
   if (id) {
     const newData = existingData.filter((item) => item.id !== id);
-
     return localStorage.setItem(key, JSON.stringify(newData));
   }
+  
   return localStorage.removeItem(key);
 };

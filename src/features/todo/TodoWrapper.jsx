@@ -6,7 +6,6 @@ import * as c from './components';
 
 function TodoWrapper() {
   const [todos, setTodos] = useState(getLocalStorage('todolist') || []);
-  // const [completedTasks, setCompletedTasks] = useState([]);
   const [editTaskId, setEditTaskId] = useState(null);
   const inputRef = useRef(null);
 
@@ -36,7 +35,10 @@ function TodoWrapper() {
   function deleteTodo(id) {
     setTodos((prevTodos) => {
       const newTodos = prevTodos.filter((todo) => todo.id !== id);
-      deleteItem({ key: 'todolist', id });
+      deleteItem({ 
+        key: 'todolist', 
+        id 
+      });
       return newTodos;
     });
   }
@@ -70,7 +72,7 @@ function TodoWrapper() {
 
   useEffect(() => {
     setLocalStorage('todolist', todos);
-  }, [todos]);
+  }, [todos, setTodos]);
 
   useEffect(() => {
     if (inputRef.current) {

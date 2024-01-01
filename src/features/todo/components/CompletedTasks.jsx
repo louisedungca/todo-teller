@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { deleteItem } from '../../../utils';
+import { deleteItem, setLocalStorage } from '../../../utils';
 
 function CompletedTasks({ todos, setTodos }) {
   const completedTasks = todos.filter((task) => task.isCompleted);
@@ -7,14 +7,21 @@ function CompletedTasks({ todos, setTodos }) {
   function deleteTodo(id) {
     setTodos((prevTodos) => {
       const newTodos = prevTodos.filter((todo) => todo.id !== id);
-      deleteItem({ key: 'todolist', id });
+      deleteItem({ 
+        key: 'todolist', 
+        id 
+      });
 
       return newTodos;
     });
   }
 
-  // console.log('@CompletedTasks - todos:', todos);
-  // console.log('@CompletedTasks - completedTasks:', completedTasks);
+  function clearCompletedTasks() {
+    console.log('completedTasks:', completedTasks);
+    const newTodos = todos.filter((todo) => !todo.isCompleted);
+    setTodos(newTodos);
+    setLocalStorage('todolist', newTodos);
+  }
 
   return (
     <div className='flex flex-col'>
@@ -23,7 +30,12 @@ function CompletedTasks({ todos, setTodos }) {
         <h3 className='uppercase text-center text-sm'>
           Completed Tasks
         </h3>
-        <small className='cursor-pointer capitalize text-center text-gray-500 hover:text-ivory'>Clear All</small>
+        <small 
+          className='cursor-pointer capitalize text-center text-gray-500 hover:text-ivory'
+          onClick={clearCompletedTasks}
+        >
+          Clear All
+        </small>
       </div>
       }
 

@@ -4,7 +4,7 @@ function CompletedTasks({ completedTasks }) {
   return (
     <div className='flex flex-col'>
       {completedTasks.length > 0 &&
-        <h3 className='uppercase text-center pt-3'>
+        <h3 className='uppercase text-center pt-3 text-sm'>
           Completed Tasks
         </h3>
       }
@@ -14,7 +14,7 @@ function CompletedTasks({ completedTasks }) {
           completedTasks.map((task) => (
             <div 
               key={task.id}
-              className='flex justify-between bg-white text-black p-1 rounded-md line-through text-gray-500'
+              className='flex justify-between bg-white text-black p-1 rounded-md line-through text-gray-500 text-xs'
             >
               <span className='w-[80%] px-1'>{task.task}</span>
               <div className='w-[15%] flex gap-2 justify-around cursor-pointer'>

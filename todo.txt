@@ -3,11 +3,14 @@ TO DO TELLER | Mini Project
 features:
 1. Ball
 -- shake animation
--- pick to do from to do list
 -- delete to do once done
+-- font size for '8'
+
+ok -- pick to do from to do list
 
 2. To do list
--- completed tasks save on local
+-- delete completed task
+-- clear all completed tasks
 
 ok -- edit to do
 ok -- add to do

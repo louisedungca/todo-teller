@@ -116,15 +116,21 @@ function TodoWrapper() {
                   />
                 ) : (
                   <span 
-                    className={`cursor-pointer w-[80%] px-1 ${todo.isCompleted ? 'line-through text-gray-500' : ''}`} 
+                    className={`cursor-pointer w-[80%] px-1 text-sm ${todo.isCompleted ? 'line-through text-gray-500' : ''}`} 
                     onClick={() => toggleCompletion(todo.id)}
                   >
                     {todo.task}
                   </span>
                 )}
                 <div className='w-[15%] flex gap-2 justify-around cursor-pointer'>
-                  <PencilSquareIcon width={20} onClick={() => handleEditClick(todo.id)} />
-                  <ArchiveBoxArrowDownIcon width={20} onClick={() => deleteTodo(todo.id)}/>
+                  <PencilSquareIcon 
+                    className='hover:opacity-45 w-15' 
+                    onClick={() => handleEditClick(todo.id)} 
+                  />
+                  <ArchiveBoxArrowDownIcon 
+                    className='hover:opacity-45 w-15' 
+                    onClick={() => deleteTodo(todo.id)}
+                  />
                 </div>            
               </div>
             )

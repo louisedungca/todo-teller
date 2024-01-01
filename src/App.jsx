@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import * as feat from './features';
 import { getLocalStorage } from './utils';
+import * as feat from './features';
 
 export default function App() {
   const [todos, setTodos] = useState(getLocalStorage('todolist') || []);

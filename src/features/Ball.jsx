@@ -1,6 +1,6 @@
+import gsap from 'gsap';
 import { useState } from 'react';
 import { setLocalStorage } from '../utils';
-import gsap from 'gsap';
 
 function Ball({ todos, setTodos }) {
   const [response, setResponse] = useState(null);

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getLocalStorage } from '../utils';
+import gsap from 'gsap';
 
 function Ball() {
   const todos = getLocalStorage('todolist') || [];
@@ -9,15 +10,33 @@ function Ball() {
     console.log('Ball clicked!');
     const incompleteTodos = todos.filter(todo => !todo.isCompleted);
 
-    if (incompleteTodos.length > 0) {
+    gsap.to('#ball-outer', { 
+      x: 5, 
+      y: 2.5,
+      ease: 'myWiggle', 
+      duration: 0.5, 
+      repeat: 3, 
+      yoyo: true 
+    });
+
+    if (incompleteTodos.length > 0) { 
       const randomIndex = Math.floor(Math.random() * incompleteTodos.length);
-      setResponse(incompleteTodos[randomIndex].task);
+      
+      setTimeout(() => {
+        setResponse(incompleteTodos[randomIndex].task);
+      }, 2000);
     }
   }
+
+  // myWiggle animation
+  gsap.registerEase('myWiggle', (p) => {
+    return Math.sin(p * Math.PI * 2);
+  });
 
   return (
     <div 
       className='cursor-pointer relative flex justify-center items-center bg-[#111] w-[300px] aspect-square rounded-full shadow-ball__outer m-[3rem]'
+      id='ball-outer'
       onClick={getRandomTodo}
     >
       <div className='flex justify-center items-center bg-[#F5F5F5] w-[150px] aspect-square rounded-full shadow-ball__inner p-1 z-50'>

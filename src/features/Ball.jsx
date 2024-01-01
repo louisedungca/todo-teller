@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { getLocalStorage } from '../utils';
+import { getLocalStorage, setLocalStorage } from '../utils';
 import gsap from 'gsap';
 
 function Ball() {
-  const todos = getLocalStorage('todolist') || [];
+  const [todos, setTodos] = useState(getLocalStorage('todolist') || []);
   const [response, setResponse] = useState(null);
 
   function getRandomTodo() {
@@ -16,14 +16,25 @@ function Ball() {
       ease: 'wiggle', 
       duration: 0.5, 
       repeat: 3, 
-      yoyo: true 
+      yoyo: true,
     });
 
     if (incompleteTodos.length > 0) { 
       const randomIndex = Math.floor(Math.random() * incompleteTodos.length);
-      
+      const selectedTodo = incompleteTodos[randomIndex];
+  
+      setTodos((prevTodos) => {
+        const updatedTodos = prevTodos.map((todo) =>
+          todo.id === selectedTodo.id
+            ? { ...todo, isFocus: true }
+            : { ...todo, isFocus: false }
+        );
+        setLocalStorage('todolist', updatedTodos);
+        return updatedTodos;
+      });
+  
       setTimeout(() => {
-        setResponse(incompleteTodos[randomIndex].task);
+        setResponse(selectedTodo.task);
       }, 2000);
     }  
   }

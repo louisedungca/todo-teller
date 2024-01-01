@@ -7,6 +7,7 @@ import * as c from './components';
 function TodoWrapper() {
   const [todos, setTodos] = useState(getLocalStorage('todolist') || []);
   const [editTaskId, setEditTaskId] = useState(null);
+  const focusTodos = todos.filter((todo) => todo.isFocus);
   const inputRef = useRef(null);
 
   function addTodo(task) {
@@ -27,6 +28,7 @@ function TodoWrapper() {
           task: task,
           isCompleted: false,
           isEditing: false,
+          isFocus: false,
         },
       ]);
     }
@@ -93,10 +95,52 @@ function TodoWrapper() {
         onBlur={handleBlur}
       />
 
-      <div className='w-[100%] flex flex-col gap-2 mt-3 px-2'>
+      {focusTodos.length > 0 && (
+        <div className='w-[100%] flex flex-col gap-2 px-2'>
+          <small className='capitalize'>Focus</small>
+          {focusTodos.map((todo, idx) => (
+            <div 
+              key={idx}
+              className={`flex justify-between bg-white text-black p-1 rounded-md outline-teal-500 outline-4 outline`}
+            >
+              {editTaskId === todo.id ? (
+                <input
+                  ref={inputRef}
+                  value={todo.task}
+                  onChange={(e) => setTodos((prevTodos) =>
+                    prevTodos.map((task) => (task.id === todo.id ? { ...task, task: e.target.value } : task))
+                  )}
+                  onBlur={handleBlur}
+                  className='w-[80%] px-1'
+                />
+              ) : (
+                <span 
+                  className={`cursor-pointer w-[80%] px-1 text-sm ${todo.isCompleted ? 'line-through text-gray-500' : ''}`} 
+                  onClick={() => toggleCompletion(todo.id)}
+                >
+                  {todo.task}
+                </span>
+              )}
+              <div className='w-[15%] flex gap-2 justify-around cursor-pointer'>
+                <PencilSquareIcon 
+                  className='hover:opacity-45 w-15' 
+                  onClick={() => handleEditClick(todo.id)} 
+                />
+                <ArchiveBoxArrowDownIcon 
+                  className='hover:opacity-45 w-15' 
+                  onClick={() => deleteTodo(todo.id)}
+                />
+              </div>            
+            </div>
+          ))}
+          <small className='capitalize pt-2'>What's next</small>
+        </div>
+      )}
+
+      <div className='w-[100%] flex flex-col gap-2 px-2'>
         {todos.length > 0 &&          
           todos.map((todo) => (
-            !todo.isCompleted && (
+            !todo.isCompleted && !todo.isFocus && (
               <div 
                 key={todo.id}
                 className={`flex justify-between bg-white text-black p-1 rounded-md `}

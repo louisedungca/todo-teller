@@ -2,17 +2,16 @@ TO DO TELLER | Mini Project
 
 features:
 1. Ball
-ok -- shake animation
-ok -- delete to do once done
-ok -- font size for '8'
 -- add to focus section picked task
 
 ok -- pick to do from to do list
+ok -- shake animation
+ok -- delete to do once done
+ok -- font size for '8'
 
 2. To do list
--- delete completed task
--- clear all completed tasks
-
+ok -- delete completed task
+ok -- clear all completed tasks
 ok -- edit to do
 ok -- add to do
 ok -- delete to do

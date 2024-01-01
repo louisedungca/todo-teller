@@ -12,6 +12,7 @@ function Ball() {
     gsap.to('#ball-outer', { 
       x: 5, 
       y: 2.5,
+      rotate: 15,
       ease: 'wiggle', 
       duration: 0.5, 
       repeat: 3, 

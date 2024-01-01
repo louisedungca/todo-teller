@@ -1,11 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
 import { v4 as randomuuid } from 'uuid'; 
 import { ArchiveBoxArrowDownIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
-import { deleteItem, getLocalStorage, setLocalStorage } from '../../utils';
+import { deleteItem, setLocalStorage } from '../../utils';
 import * as c from './components';
 
-function TodoWrapper() {
-  const [todos, setTodos] = useState(getLocalStorage('todolist') || []);
+function TodoWrapper({ todos, setTodos }) {
   const [editTaskId, setEditTaskId] = useState(null);
   const focusTodos = todos.filter((todo) => todo.isFocus);
   const inputRef = useRef(null);

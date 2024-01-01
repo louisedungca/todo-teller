@@ -28,7 +28,7 @@ function CompletedTasks({ todos, setTodos }) {
       {completedTasks.length > 0 &&
       <div className='flex justify-between pt-3 px-3'>
         <h3 className='uppercase text-center text-sm'>
-          Completed Tasks
+          Completed
         </h3>
         <small 
           className='cursor-pointer capitalize text-center text-gray-500 hover:text-ivory'

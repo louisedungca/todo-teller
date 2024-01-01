@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { getLocalStorage, setLocalStorage } from '../utils';
+import { setLocalStorage } from '../utils';
 import gsap from 'gsap';
 
-function Ball() {
-  const [todos, setTodos] = useState(getLocalStorage('todolist') || []);
+function Ball({ todos, setTodos }) {
   const [response, setResponse] = useState(null);
 
   function getRandomTodo() {

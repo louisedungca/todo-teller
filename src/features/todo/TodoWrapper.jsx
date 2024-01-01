@@ -6,7 +6,7 @@ import * as c from './components';
 
 function TodoWrapper() {
   const [todos, setTodos] = useState(getLocalStorage('todolist') || []);
-  const [completedTasks, setCompletedTasks] = useState([]);
+  // const [completedTasks, setCompletedTasks] = useState([]);
   const [editTaskId, setEditTaskId] = useState(null);
   const inputRef = useRef(null);
 
@@ -70,11 +70,6 @@ function TodoWrapper() {
 
   useEffect(() => {
     setLocalStorage('todolist', todos);
-
-    const completedTasks = todos.filter((task) => task.isCompleted);
-    setCompletedTasks(completedTasks);
-    
-    setLocalStorage('completedTasks', completedTasks);
   }, [todos]);
 
   useEffect(() => {
@@ -138,7 +133,8 @@ function TodoWrapper() {
       </div>
 
       <c.CompletedTasks 
-        completedTasks={completedTasks} 
+        todos={todos} 
+        setTodos = {setTodos}
       />
     </div>
   );

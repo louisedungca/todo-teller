@@ -7,13 +7,12 @@ function Ball() {
   const [response, setResponse] = useState(null);
 
   function getRandomTodo() {
-    console.log('Ball clicked!');
     const incompleteTodos = todos.filter(todo => !todo.isCompleted);
 
     gsap.to('#ball-outer', { 
       x: 5, 
       y: 2.5,
-      ease: 'myWiggle', 
+      ease: 'wiggle', 
       duration: 0.5, 
       repeat: 3, 
       yoyo: true 
@@ -25,12 +24,12 @@ function Ball() {
       setTimeout(() => {
         setResponse(incompleteTodos[randomIndex].task);
       }, 2000);
-    }
+    }  
   }
 
-  // myWiggle animation
-  gsap.registerEase('myWiggle', (p) => {
-    return Math.sin(p * Math.PI * 2);
+  // wiggle animation
+  gsap.registerEase('wiggle', (progress) => {
+    return Math.sin(progress * Math.PI * 3);
   });
 
   return (
@@ -40,7 +39,7 @@ function Ball() {
       onClick={getRandomTodo}
     >
       <div className='flex justify-center items-center bg-[#F5F5F5] w-[150px] aspect-square rounded-full shadow-ball__inner p-1 z-50'>
-        <h3 className='text-black text-[80%] font-medium p-1'>{response || '8'}</h3>
+        <h3 className='text-black text-[80%] text-center font-medium p-1'>{response || '8'}</h3>
       </div>
       <div className='absolute top-0 bg-[#333] opacity-20 w-[250px] aspect-square rounded-full'></div>
       <div className='absolute top-0 bg-[#666] opacity-20 w-[175px] aspect-square rounded-full'></div>

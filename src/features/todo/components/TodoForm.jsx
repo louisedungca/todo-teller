@@ -1,21 +1,14 @@
+import { PlusIcon } from '@heroicons/react/24/solid';
 import { useForm } from 'react-hook-form';
 
-function TodoForm({ todos, addTodo }) {
+function TodoForm({ addTodo }) {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   function onSubmit(formData) {
     const { todoItem } = formData;
     addTodo(todoItem);
     reset();
-    
-    // for checking only -- delete later
-    console.log('todoItem:', todoItem);
-    console.log('@TodoForm - todos:', todos);
   }
-
-  // for checking only -- delete later
-  // console.log('@TodoForm - todos:', todos);
-  // console.log('@TodoForm - addTodo:', addTodo);
 
   return (
     <div>
@@ -33,14 +26,14 @@ function TodoForm({ todos, addTodo }) {
           })}
           type='text'
           placeholder='What do you wanna do?'
-          className='w-[80%] rounded-md py-1 px-2 text-black'
+          className='w-[90%] rounded-md py-1 px-2 text-black'
         />
 
         <button 
           type='submit'
-          className='border-white border-2 w-[20%] rounded-md p-1'
+          className='border-white border-2 w-[10%] rounded-md p-1'
         >
-          Add
+          <PlusIcon />
         </button>
       </form>
 

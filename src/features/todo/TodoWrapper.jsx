@@ -2,10 +2,12 @@ import { ArchiveBoxArrowDownIcon, PencilSquareIcon } from '@heroicons/react/24/s
 import { useEffect, useState, useRef } from 'react';
 import { v4 as randomuuid } from 'uuid'; 
 import { deleteItem, setLocalStorage } from '../../utils';
+import * as global from '../../components';
 import * as c from './components';
 
 function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
   const [editTaskId, setEditTaskId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef(null);
 
   function addTodo(task) {
@@ -80,6 +82,18 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
     }
   }, [editTaskId]);
 
+  useEffect(() => {
+    if (focusedTodo.length > 0) {
+      setIsLoading(true);
+
+      const focusTimeout  = setTimeout(() => {
+        setIsLoading(false);        
+      }, 2000);
+
+      return () => clearTimeout(focusTimeout);
+    }
+  }, [focusedTodo, setFocusedTodo]);
+
   return (
     <div className='flex flex-col gap-3'>
       <h3 className='p-1 text-center uppercase'>
@@ -94,55 +108,67 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
       />
 
       <div className='w-[100%] flex flex-col gap-2 px-2'>
-        {focusedTodo.length > 0 && (
+        {isLoading ? (
           <div className='w-[100%] flex flex-col gap-2'>
             <small className='capitalize'>Focus</small>
-            {focusedTodo.map((todo, idx) => (
-              <div
-                key={idx}
-                className={`flex justify-between bg-white text-black p-1 rounded-md outline-teal-500 outline-4 outline`}
-              >
-                {editTaskId === todo.id ? (
-                  <input
-                    ref={inputRef}
-                    value={todo.task}
-                    onChange={(e) =>
-                      setTodos((prevTodos) =>
-                        prevTodos.map((task) =>
-                          task.id === todo.id
-                            ? { ...task, task: e.target.value }
-                            : task
-                        )
-                      )
-                    }
-                    onBlur={handleBlur}
-                    className='w-[80%] px-1'
-                  />
-                ) : (
-                  <span
-                    className={`cursor-pointer w-[80%] px-1 text-sm ${
-                      todo.isCompleted ? 'line-through text-gray-500' : ''
-                    }`}
-                    onClick={() => toggleCompletion(todo.id)}
-                  >
-                    {todo.task}
-                  </span>
-                )}
-                <div className='w-[15%] flex gap-2 justify-around cursor-pointer'>
-                  <PencilSquareIcon
-                    className='hover:opacity-45 w-15'
-                    onClick={() => handleEditClick(todo.id)}
-                  />
-                  <ArchiveBoxArrowDownIcon
-                    className='hover:opacity-45 w-15'
-                    onClick={() => deleteTodo(todo.id)}
-                  />
-                </div>
-              </div>
-            ))}
+            <div className='flex justify-between bg-white text-black p-1 rounded-md'>
+              <span className='w-[80%] px-1 text-sm'>
+                <global.EllipsisLoader />
+              </span>
+            </div>
             <small className='capitalize pt-2'>Next</small>
           </div>
-        )}
+          ) : (
+            focusedTodo.length > 0 && (
+              <div className='w-[100%] flex flex-col gap-2'>
+                <small className='capitalize'>Focus</small>
+                {focusedTodo.map((todo, idx) => (
+                  <div
+                    key={idx}
+                    className={`flex justify-between bg-white text-black p-1 rounded-md outline-teal-500 outline-4 outline`}
+                  >
+                    {editTaskId === todo.id ? (
+                      <input
+                        ref={inputRef}
+                        value={todo.task}
+                        onChange={(e) =>
+                          setTodos((prevTodos) =>
+                            prevTodos.map((task) =>
+                              task.id === todo.id
+                                ? { ...task, task: e.target.value }
+                                : task
+                            )
+                          )
+                        }
+                        onBlur={handleBlur}
+                        className='w-[80%] px-1'
+                      />
+                    ) : (
+                      <span
+                        className={`cursor-pointer w-[80%] px-1 text-sm ${
+                          todo.isCompleted ? 'line-through text-gray-500' : ''
+                        }`}
+                        onClick={() => toggleCompletion(todo.id)}
+                      >
+                        {todo.task}
+                      </span>
+                    )}
+                    <div className='w-[15%] flex gap-2 justify-around cursor-pointer'>
+                      <PencilSquareIcon
+                        className='hover:opacity-45 w-15'
+                        onClick={() => handleEditClick(todo.id)}
+                      />
+                      <ArchiveBoxArrowDownIcon
+                        className='hover:opacity-45 w-15'
+                        onClick={() => deleteTodo(todo.id)}
+                      />
+                    </div>
+                  </div>
+                ))}
+                <small className='capitalize pt-2'>Next</small>
+              </div>
+            )
+          )}
 
         {todos.length > 0 && (
           <div className='flex flex-col gap-2'>

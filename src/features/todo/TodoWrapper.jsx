@@ -111,7 +111,7 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
         {isLoading ? (
           <div className='w-[100%] flex flex-col gap-2'>
             <small className='capitalize'>Focus</small>
-            <div className='flex justify-between bg-white text-black p-1 rounded-md'>
+            <div className='flex justify-between bg-white text-black p-1 rounded-md w-1/6 h-8'>
               <span className='w-[80%] px-1 text-sm'>
                 <global.EllipsisLoader />
               </span>
@@ -125,7 +125,7 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
                 {focusedTodo.map((todo, idx) => (
                   <div
                     key={idx}
-                    className={`flex justify-between bg-white text-black p-1 rounded-md outline-teal-500 outline-4 outline`}
+                    className={`flex justify-between h-8 bg-white text-black p-1 rounded-md outline-teal-500 outline-4 outline`}
                   >
                     {editTaskId === todo.id ? (
                       <input
@@ -155,11 +155,11 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
                     )}
                     <div className='w-[15%] flex gap-2 justify-around cursor-pointer'>
                       <PencilSquareIcon
-                        className='hover:opacity-45 w-15'
+                        className='h-4 hover:opacity-45 w-15'
                         onClick={() => handleEditClick(todo.id)}
                       />
                       <ArchiveBoxArrowDownIcon
-                        className='hover:opacity-45 w-15'
+                        className='h-4 hover:opacity-45 w-15'
                         onClick={() => deleteTodo(todo.id)}
                       />
                     </div>
@@ -177,7 +177,7 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
             .map((todo) => (           
               <div
                 key={todo.id}
-                className={`flex justify-between bg-white text-black p-1 rounded-md`}
+                className={`flex justify-between h-8 bg-white text-black p-1 rounded-md`}
               >
                 {editTaskId === todo.id ? (
                   <input

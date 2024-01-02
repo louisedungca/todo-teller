@@ -15,7 +15,7 @@ export default function App() {
           Ask the Eight Ball
         </h1>
         <small>
-          When you no longer know what to do, let this magic ball decide for you!
+          When you don't know where to start on your to do, let this magic ball decide for you!
         </small>
         <feat.Ball 
           todos = {todos}

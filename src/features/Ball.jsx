@@ -4,8 +4,10 @@ import { setLocalStorage } from '../utils';
 
 function Ball({ todos, setTodos, setFocusedTodo }) {
   const [response, setResponse] = useState(null);
+  const [isShaking, setIsShaking] = useState(true);
 
   function getRandomTodo() {
+    setIsShaking(true);
     const incompleteTodos = todos.filter(todo => !todo.isCompleted);
 
     gsap.to('#ball-outer', { 
@@ -35,6 +37,7 @@ function Ball({ todos, setTodos, setFocusedTodo }) {
   
       setTimeout(() => {
         setResponse(selectedTodo.task);
+        setIsShaking(false);
       }, 2000);
     }  
   }
@@ -51,8 +54,8 @@ function Ball({ todos, setTodos, setFocusedTodo }) {
       onClick={getRandomTodo}
     >
       <div className='flex justify-center items-center bg-[#F5F5F5] w-[150px] aspect-square rounded-full shadow-ball__inner p-1 z-50'>
-        <h3 className={`text-black text-center font-medium p-1 ${response ? 'text-fontResponse' : 'text-font8'}`}>
-          {response || '8'}
+        <h3 className={`text-black text-center font-medium p-1 ${isShaking ? 'text-font8' : 'text-fontResponse'}`}>
+          {isShaking ? '8' : response }
         </h3>
       </div>
       <div className='absolute top-0 bg-[#333] opacity-20 w-[250px] aspect-square rounded-full'></div>

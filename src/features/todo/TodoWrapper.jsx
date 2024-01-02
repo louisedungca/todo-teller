@@ -4,9 +4,8 @@ import { v4 as randomuuid } from 'uuid';
 import { deleteItem, setLocalStorage } from '../../utils';
 import * as c from './components';
 
-function TodoWrapper({ todos, setTodos }) {
+function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
   const [editTaskId, setEditTaskId] = useState(null);
-  const focusTodos = todos.filter((todo) => todo.isFocus);
   const inputRef = useRef(null);
 
   function addTodo(task) {
@@ -95,10 +94,10 @@ function TodoWrapper({ todos, setTodos }) {
       />
 
       <div className='w-[100%] flex flex-col gap-2 px-2'>
-        {focusTodos.length > 0 && (
+        {focusedTodo.length > 0 && (
           <div className='w-[100%] flex flex-col gap-2'>
             <small className='capitalize'>Focus</small>
-            {focusTodos.map((todo, idx) => (
+            {focusedTodo.map((todo, idx) => (
               <div
                 key={idx}
                 className={`flex justify-between bg-white text-black p-1 rounded-md outline-teal-500 outline-4 outline`}

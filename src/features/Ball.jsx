@@ -2,7 +2,7 @@ import gsap from 'gsap';
 import { useState } from 'react';
 import { setLocalStorage } from '../utils';
 
-function Ball({ todos, setTodos }) {
+function Ball({ todos, setTodos, setFocusedTodo }) {
   const [response, setResponse] = useState(null);
 
   function getRandomTodo() {
@@ -29,6 +29,7 @@ function Ball({ todos, setTodos }) {
             : { ...todo, isFocus: false }
         );
         setLocalStorage('todolist', updatedTodos);
+        setFocusedTodo([selectedTodo]); 
         return updatedTodos;
       });
   

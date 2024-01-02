@@ -1,6 +1,6 @@
 # To-Do Teller
 
-When you don't know where to start on your to-do list, let this magic ball decide for you!
+When you don't know where to start on your to-do, let this magic ball decide for you!
 
 ## Features
 

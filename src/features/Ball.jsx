@@ -2,12 +2,13 @@ import gsap from 'gsap';
 import { useState } from 'react';
 import { setLocalStorage } from '../utils';
 
-function Ball({ todos, setTodos, setFocusedTodo }) {
+function Ball({ todos, setTodos, setFocusedTodo, setCompleteTask }) {
   const [response, setResponse] = useState(null);
   const [isShaking, setIsShaking] = useState(true);
 
   function getRandomTodo() {
     setIsShaking(true);
+    setCompleteTask(false);
     const incompleteTodos = todos.filter(todo => !todo.isCompleted);
 
     gsap.to('#ball-outer', { 

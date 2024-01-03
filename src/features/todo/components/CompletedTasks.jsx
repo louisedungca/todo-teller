@@ -39,7 +39,7 @@ function CompletedTasks({ todos, setTodos }) {
       </div>
       }
 
-      <div className='w-[100%] flex flex-col gap-2 mt-3 px-2'>
+      <div className='w-[100%] flex flex-col gap-2 mt-3 px-2 overflow-y-auto max-h-[120px]'>
         {completedTasks.length > 0 &&
           completedTasks.map((task) => (
             <div 

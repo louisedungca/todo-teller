@@ -5,7 +5,7 @@ import { deleteItem, setLocalStorage } from '../../utils';
 import * as global from '../../components';
 import * as c from './components';
 
-function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
+function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo, completeTask, setCompleteTask }) {
   const [editTaskId, setEditTaskId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef(null);
@@ -50,6 +50,9 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
       const newTodos = prevTodos.map((todo) =>
         todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
       );
+      const focusedTask = newTodos.find((todo) => todo.id === id);
+
+      setCompleteTask(focusedTask?.isCompleted || false);
       setLocalStorage('todolist', newTodos);
       return newTodos;
     });
@@ -116,7 +119,7 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
                 <global.EllipsisLoader />
               </span>
             </div>
-            <small className='capitalize pt-2'>Next</small>
+            {todos.every((todo) => todo.isCompleted) ? null : (<small className='capitalize pt-2'>Next</small>)}
           </div>
         ) : (
           <div className='w-[100%] flex flex-col gap-2'>
@@ -128,25 +131,26 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
               >
                 <span
                   className={`cursor-pointer w-[80%] px-1 text-sm ${
-                    todo.isCompleted ? 'line-through text-gray-500' : ''
+                    (todo.isCompleted || completeTask) ? 'line-through text-gray-500' : ''
                   }`}
-                  onClick={() => toggleCompletion(todo.id)}
+                  onClick={() => {
+                    toggleCompletion(todo.id);
+                  }}
                 >
-                  {todo.isCompleted ? (
-                    <span>{todo.task}</span>
+                  {todo.isCompleted || completeTask ? (
+                    <span className='line-through text-gray-500'>{todo.task}</span>
                   ) : (
                     <span>{todo.task}</span>
                   )}
                 </span>
               </div>
             ))}
-            <small className='capitalize pt-2'>Next</small>
+            {todos.every((todo) => todo.isCompleted) ? null : (<small className='capitalize pt-2'>Next</small>)}
           </div>
         )}
 
-
         {todos.length > 0 && (
-          <div className='flex flex-col gap-2'>
+          <div className='flex flex-col gap-2 p-2 overflow-y-auto max-h-[250px]'>
             {todos
             .filter((todo) => !todo.isCompleted && !todo.isFocus)
             .map((todo) => (           

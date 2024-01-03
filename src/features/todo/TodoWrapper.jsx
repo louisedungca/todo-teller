@@ -111,64 +111,39 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
         {isLoading ? (
           <div className='w-[100%] flex flex-col gap-2'>
             <small className='capitalize'>Focus</small>
-            <div className='flex justify-between bg-white text-black p-1 rounded-md w-1/6 h-8'>
-              <span className='w-[80%] px-1 text-sm'>
+            <div className='flex justify-between items-center bg-white text-black p-1 rounded-md w-1/6 h-8'>
+              <span className='w-full px-1 text-sm'>
                 <global.EllipsisLoader />
               </span>
             </div>
             <small className='capitalize pt-2'>Next</small>
           </div>
-          ) : (
-            focusedTodo.length > 0 && (
-              <div className='w-[100%] flex flex-col gap-2'>
-                <small className='capitalize'>Focus</small>
-                {focusedTodo.map((todo, idx) => (
-                  <div
-                    key={idx}
-                    className={`flex justify-between h-8 bg-white text-black p-1 rounded-md outline-teal-500 outline-4 outline`}
-                  >
-                    {editTaskId === todo.id ? (
-                      <input
-                        ref={inputRef}
-                        value={todo.task}
-                        onChange={(e) =>
-                          setTodos((prevTodos) =>
-                            prevTodos.map((task) =>
-                              task.id === todo.id
-                                ? { ...task, task: e.target.value }
-                                : task
-                            )
-                          )
-                        }
-                        onBlur={handleBlur}
-                        className='w-[80%] px-1'
-                      />
-                    ) : (
-                      <span
-                        className={`cursor-pointer w-[80%] px-1 text-sm ${
-                          todo.isCompleted ? 'line-through text-gray-500' : ''
-                        }`}
-                        onClick={() => toggleCompletion(todo.id)}
-                      >
-                        {todo.task}
-                      </span>
-                    )}
-                    <div className='w-[15%] flex gap-2 justify-around cursor-pointer'>
-                      <PencilSquareIcon
-                        className='h-4 hover:opacity-45 w-15'
-                        onClick={() => handleEditClick(todo.id)}
-                      />
-                      <ArchiveBoxArrowDownIcon
-                        className='h-4 hover:opacity-45 w-15'
-                        onClick={() => deleteTodo(todo.id)}
-                      />
-                    </div>
-                  </div>
-                ))}
-                <small className='capitalize pt-2'>Next</small>
+        ) : (
+          <div className='w-[100%] flex flex-col gap-2'>
+            <small className='capitalize'>Focus</small>
+            {focusedTodo.map((todo, idx) => (
+              <div
+                key={idx}
+                className={`flex justify-between items-center h-8 bg-white text-black p-1 rounded-md outline-teal-500 outline-4 outline`}
+              >
+                <span
+                  className={`cursor-pointer w-[80%] px-1 text-sm ${
+                    todo.isCompleted ? 'line-through text-gray-500' : ''
+                  }`}
+                  onClick={() => toggleCompletion(todo.id)}
+                >
+                  {todo.isCompleted ? (
+                    <span>{todo.task}</span>
+                  ) : (
+                    <span>{todo.task}</span>
+                  )}
+                </span>
               </div>
-            )
-          )}
+            ))}
+            <small className='capitalize pt-2'>Next</small>
+          </div>
+        )}
+
 
         {todos.length > 0 && (
           <div className='flex flex-col gap-2'>
@@ -177,7 +152,7 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
             .map((todo) => (           
               <div
                 key={todo.id}
-                className={`flex justify-between h-8 bg-white text-black p-1 rounded-md`}
+                className={`flex justify-between items-center h-8 bg-white text-black p-1 rounded-md`}
               >
                 {editTaskId === todo.id ? (
                   <input
@@ -205,7 +180,7 @@ function TodoWrapper({ todos, setTodos, focusedTodo, setFocusedTodo }) {
                     {todo.task}
                   </span>
                 )}
-                <div className='w-[15%] flex gap-2 justify-around cursor-pointer'>
+                <div className='w-[15%] flex gap-2 justify-around items-center cursor-pointer'>
                   <PencilSquareIcon
                     className='hover:opacity-45 w-15'
                     onClick={() => handleEditClick(todo.id)}

@@ -26,7 +26,7 @@ function CompletedTasks({ todos, setTodos }) {
   return (
     <div className='flex flex-col'>
       {completedTasks.length > 0 &&
-      <div className='flex justify-between pt-3 px-3'>
+      <div className='flex justify-between items-center pt-3 px-3'>
         <h3 className='uppercase text-center text-sm'>
           Completed
         </h3>
@@ -44,7 +44,7 @@ function CompletedTasks({ todos, setTodos }) {
           completedTasks.map((task) => (
             <div 
               key={task.id}
-              className='flex justify-between bg-white p-1 rounded-md line-through text-gray-500 text-xs'
+              className='flex justify-between items-center bg-white p-1 rounded-md line-through text-gray-500 text-xs'
             >
               <span className='w-[80%] px-1'>{task.task}</span>
               <XMarkIcon className='cursor-pointer w-4 hover:text-black' onClick={() => deleteTodo(task.id)} />        

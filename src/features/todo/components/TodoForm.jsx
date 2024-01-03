@@ -26,14 +26,14 @@ function TodoForm({ addTodo }) {
           })}
           type='text'
           placeholder='What do you wanna do?'
-          className='w-[90%] rounded-md py-1 px-2 text-black'
+          className='w-5/6 h-8 rounded-md py-1 px-2 text-black'
         />
 
         <button 
           type='submit'
-          className='border-white border-2 w-[10%] rounded-md p-1'
+          className='border-white border-2 w-1/6 h-8 rounded-md p-1 flex items-center justify-center hover:bg-teal-500'
         >
-          <PlusIcon />
+          <PlusIcon className='h-4' />
         </button>
       </form>
 

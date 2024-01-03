@@ -4,13 +4,12 @@ import * as feat from './features';
 
 export default function App() {
   const [todos, setTodos] = useState(getLocalStorage('todolist') || []);
+  const [completeTask, setCompleteTask] = useState(false);
   const [focusedTodo, setFocusedTodo] = useState((todos || []).filter((todo) => todo.isFocus));
-
-  // console.log('focused todo:', focusedTodo[0].task);
   
   return (
-    <main className='bg-gradient-to-br from-[#1a1d21] from-10% via-[#1f2125] via-30% to-[#28282c] h-screen w-full flex justify-center items-center gap-3 p-4 text-ivory'>
-      <section className='w-[60%] h-screen flex flex-col justify-center items-center p-2'>
+    <main className='bg-gradient-to-br from-[#1a1d21] from-10% via-[#1f2125] via-30% to-[#28282c] h-screen w-full max-h-dvh flex justify-center items-center px-20 py-4 text-ivory max-[768px]:flex-col max-[768px]:px-6'>
+      <section className='w-3/4 h-screen flex flex-col justify-center items-center py-2 max-[768px]:w-full'>
         <h1 className='text-[1.5rem] font-bold'>
           Ask the Eight Ball
         </h1>
@@ -22,14 +21,17 @@ export default function App() {
           setTodos = {setTodos}
           focusedTodo = {focusedTodo}
           setFocusedTodo = {setFocusedTodo}
+          setCompleteTask = {setCompleteTask}
         />
       </section>    
-      <aside className='max-w-[20vw] w-[20%]'>
+      <aside className='w-1/4 max-[768px]:w-full'>
         <feat.TodoWrapper
           todos = {todos}
           setTodos = {setTodos}
           focusedTodo = {focusedTodo}
           setFocusedTodo = {setFocusedTodo}
+          completeTask ={completeTask}
+          setCompleteTask = {setCompleteTask}
         />
       </aside>        
     </main>    

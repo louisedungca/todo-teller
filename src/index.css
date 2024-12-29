@@ -1,35 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100;300;400;500;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Onest', sans-serif;
+    font-family: "Onest", sans-serif;
+  }
+
+  body {
+    @apply w-full h-dvh bg-gradient-to-br from-[#1a1d21] from-10% via-[#1f2125] via-30% to-[#28282c] grid place-items-center;
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer components {
+  .br {
+    @apply border-dotted border-red-500 border-2;
+  }
 
-body {
-  min-width: 320px;
-  width: 100%;
-  height: 100vh;
-}
-
-#root {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  #root {
+    @apply w-full min-w-[320px] min-h-[650px] flex justify-center items-center overflow-y-auto;
+  }
 }
 
 /* scrollbar */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 5px;
 }
 
@@ -45,4 +40,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
+} */

@@ -72,7 +72,7 @@ function Ball({
     >
       <div className='flex justify-center items-center bg-[#F5F5F5] w-ball__inner aspect-square rounded-full shadow-ball__inner p-1 z-50'>
         <h3
-          className={`p-1 text-black text-center font-medium ${
+          className={`p-1 text-black text-center grid place-items-center font-medium ${
             isShaking
               ? "text-font8"
               : "text-fontResponse p-0.5 max-w-ball__inner aspect-square overflow-y-auto scrollbar-none"
